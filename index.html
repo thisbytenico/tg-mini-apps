@@ -1,162 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Telegram Mini Apps Vanilla JS Sample App</title>
-    <style>
-        body {
-            --bg-color: var(--tg-theme-bg-color);
-            font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--tg-theme-text-color);
-            margin: 48px 24px;
-            padding: 0;
-            color-scheme: var(--tg-color-scheme);
-        }
-
-        a {
-            color: var(--tg-theme-link-color);
-        }
-        #viewport {
-            position: fixed;
-            left: 0;
-            right: 0;
-            top: 0;
-            height: var(--tg-viewport-stable-height, 100vh);
-            pointer-events: none;
-            transition: all .2s ease;
-        }
-        #viewport:after {
-            content: '';
-            display: block;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            border-width: 4px;
-            border-style: solid;
-            border-image: linear-gradient(45deg, rgba(64, 224, 208, .5), rgba(173, 255, 47, .5)) 1;
-        }
-
-        #viewport-params-size,
-        #viewport-params-expand {
-            content: attr(text);
-            position: absolute;
-            display: inline-block;
-            background: var(--tg-theme-link-color, rgb(64, 224, 208));
-            right: 4px;
-            left: auto;
-            font-size: 8px;
-            padding: 4px;
-            vertical-align: top;
-        }
-        #viewport-params-size {
-            top: 4px;
-        }
-        #viewport-params-expand {
-            top: 30px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分享图片</title>
 </head>
-
 <body>
-    <main>
-        <div align="center">
-            <a href="https://ton.org/"><img width="48" src="./assets/tapps.png" alt="logo of telegram web apps"></a>
-        </div>
-        <h1>Modals</h1>
-        <button onclick="Telegram.WebApp.showAlert('Hello Adam!');">Launch Alert</button>
-        <button onclick="showPopup();">Launch Popup</button>
+    <h1>分享图片</h1>
+    
+    <button id="shareButton">分享图片</button>
 
-        <h1>Links</h1>
-        <ul>
-            <li>
-                <a href="javascript:Telegram.WebApp.openTelegramLink('https://t.me/trendingapps');">Open link within Telegram</a>
-            </li>
-            <li>
-                <a href="javascript:Telegram.WebApp.openLink('https://ton.org/');">Open link in external browser</a>
-            </li>
-            <li>
-                <a href="javascript:Telegram.WebApp.openLink('https://telegra.ph/api',{try_instant_view:true});">Open link inside Telegram webview</a>
-            </li>
-        </ul>
-
-        <h1>Buttons</h1>
-        <button onclick="Telegram.WebApp.expand();">Expand Webview</button>
-        <button onclick="toggleMainButton();">Toggle Main Button</button>
-    </main>
-    <div id="viewport"></div>
-    <div id="viewport-params-size"></div>
-    <div id="viewport-params-expand"></div>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        // Init TWA
-        Telegram.WebApp.ready();
+        // 获取图片元素和分享按钮
+        const shareButton = document.getElementById("shareButton");
 
-        // Event occurs whenever theme settings are changed in the user's Telegram app (including switching to night mode).
-        Telegram.WebApp.onEvent('themeChanged', function() {
-            document.documentElement.className = Telegram.WebApp.colorScheme;
-        });
-
-        // Show main button
-        Telegram.WebApp.MainButton.setParams({
-            text: 'Main Button'
-        });
-        Telegram.WebApp.MainButton.onClick(function () {
-            Telegram.WebApp.showAlert('Main Button was clicked')
-        });	
-        Telegram.WebApp.MainButton.show();
-
-        // Function to call showPopup API
-        function showPopup() {
-            Telegram.WebApp.showPopup({
-                title: 'Title',
-                message: 'Some message',
-                buttons: [
-                    {id: 'link', type: 'default', text: 'Open ton.org'},
-                    {type: 'cancel'},
-                ]
-            }, function(btn) {
-                if (btn === 'link') {
-                    Telegram.WebApp.openLink('https://ton.org/');
-                }
-            });
-        };
-
-        // Function to toggle main TWA button
-        function toggleMainButton() {
-            if (Telegram.WebApp.MainButton.isVisible) {
-                Telegram.WebApp.MainButton.hide();
+        // 添加分享按钮的点击事件处理程序
+        shareButton.addEventListener("click", () => {
+            // 使用 navigator.share 分享图片
+            if (navigator.share) {
+                navigator.share({
+                    title: "分享的图片标题",
+                    text: "这是一张分享的图片",
+                    files: [base64ToFile(`data:image/png;base64,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`,"image")]
+                })
+                .then(() => {
+                    console.log("分享成功");
+                })
+                .catch((error) => {
+                    console.error("分享失败:", error);
+                });
             } else {
-                Telegram.WebApp.MainButton.show();
+                alert("此浏览器不支持分享功能");
             }
-        };
-
-        function setViewportData() {
-            var sizeEl = document.getElementById('viewport-params-size');
-            sizeEl.innerText = 'width: ' + window.innerWidth + ' x ' + 
-                'height: ' + Telegram.WebApp.viewportStableHeight;
-
-            var expandEl = document.querySelector('#viewport-params-expand');
-            expandEl.innerText = 'Is Expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false');
-        }
-
-        Telegram.WebApp.setHeaderColor('secondary_bg_color');
-
-        setViewportData();
-        Telegram.WebApp.onEvent('viewportChanged', setViewportData);
-
-        Telegram.WebApp.onEvent('themeChanged', function() {
-            document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
         });
 
+        function base64ToFile(base64, fileName) {
+                // 将base64按照 , 进行分割 将前缀  与后续内容分隔开
+            let data = base64.split(',');
+            // 利用正则表达式 从前缀中获取图片的类型信息（image/png、image/jpeg、image/webp等）
+            let type = data[0].match(/:(.*?);/)[1];
+            // 从图片的类型信息中 获取具体的文件格式后缀（png、jpeg、webp）
+            let suffix = type.split('/')[1];
+            // 使用atob()对base64数据进行解码  结果是一个文件数据流 以字符串的格式输出
+            const bstr = window.atob(data[1]);
+            // 获取解码结果字符串的长度
+            let n = bstr.length
+            // 根据解码结果字符串的长度创建一个等长的整形数字数组
+            // 但在创建时 所有元素初始值都为 0
+            const u8arr = new Uint8Array(n)
+            // 将整形数组的每个元素填充为解码结果字符串对应位置字符的UTF-16 编码单元
+            while (n--) {
+                // charCodeAt()：获取给定索引处字符对应的 UTF-16 代码单元
+                u8arr[n] = bstr.charCodeAt(n)
+            }
+            // 利用构造函数创建File文件对象
+            // new File(bits, name, options)
+            const file =  new File([u8arr], `${fileName}.${suffix}`, {
+                type: type
+            })
+            // 将File文件对象返回给方法的调用者
+        return file;
+  }
     </script>
-
-    <!-- Eruda is console for mobile browsers -->
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script>eruda.init();</script>
 </body>
 </html>
