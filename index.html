@@ -7,10 +7,42 @@
 </head>
 <body>
     <h1>分享图片</h1>
-    
-    <button id="shareButton">分享图片</button>
+    <button id="facebookShare">facebook分享</button>
 
+    <button id="shareButton">分享图片</button>
+    <!-- <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script> -->
+    
     <script>
+
+        (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = `https://connect.facebook.net/en_US/sdk.js`;
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'))
+
+        window.onload=()=>{
+            FB.init({
+                appId            : '375324055986753',
+                autoLogAppEvents : true,
+                xfbml            : true,
+                version          : 'v12.0'
+            });
+
+        }
+         const facebookShare = document.getElementById("facebookShare");
+         facebookShare.onclick=()=>{
+             const text = `分享的文案`
+                const link = 'https://www.baidu.com/'// 分享的页面链接，特别注意这里不需要encode
+                FB.ui({
+                method: 'share',
+                href: link,
+                quote: text
+                }, function(response){})
+         }
+
+
         // 获取图片元素和分享按钮
         const shareButton = document.getElementById("shareButton");
 
