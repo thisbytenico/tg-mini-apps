@@ -8,6 +8,8 @@
 <body>
     <h1>分享图片</h1>
     <button id="facebookShare">facebook分享</button>
+    <button id="facebookShare1">facebook分享 只显示邀请码</button>
+    <button id="facebookShare2">facebook分享 只显示邀请链接</button>
 
     <button id="shareButton">分享图片</button>
     <!-- <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script> -->
@@ -47,7 +49,35 @@
             })
          }
 
+         const facebookShare1 = document.getElementById("facebookShare1");
+         facebookShare1.onclick=()=>{
+            const text = `分享的文案`
+            const link = 'https://kcex.com/'// 分享的页面链接，特别注意这里不需要encode
+            FB.ui({
+                display: 'popup',
+                method: 'share',
+                hashtag:"#123456 ",//tag
+                href: 'https://thisbytenico.github.io/tg-mini-apps/',
+                quote: text
+            }, function(response){
+                console.log('response',response)
+            })
+         }
 
+         const facebookShare2 = document.getElementById("facebookShare2");
+         facebookShare2.onclick=()=>{
+            const text = `分享的文案`
+            const link = 'https://kcex.com/'// 分享的页面链接，特别注意这里不需要encode
+            FB.ui({
+                display: 'popup',
+                method: 'share',
+                hashtag:"https://www.kcex.com/register?inviteCode=123456 ",//tag
+                href: 'https://thisbytenico.github.io/tg-mini-apps/',
+                quote: text
+            }, function(response){
+                console.log('response',response)
+            })
+         }
         // 获取图片元素和分享按钮
         const shareButton = document.getElementById("shareButton");
 
