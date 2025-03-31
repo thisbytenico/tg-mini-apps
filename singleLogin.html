@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>国家追溯</title>
+    <meta name="viewport"  content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <style>
+
+        .div_loading_c .logo{
+            animation:myfirst 4s infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes myfirst
+        {
+            0%   {opacity: 1}
+
+            50% {opacity: 0}
+
+            100% {opacity: 1}
+        }
+
+        .div_loading_c{
+            position: absolute;
+            z-index: 999;
+            top:0;
+            bottom: 0;
+            left:0;
+            right: 0;
+            background:#44B46A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .left_logo_text{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 28px;
+            color:rgba(255,255,255,0.8);
+            font-family: "Verdana";
+         }
+        .left_logo_text p{
+            letter-spacing:4px;
+        }
+        .logo {
+           display: flex; 
+        }
+    </style>
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+    <script>
+        const najax = {
+            //原生js实现ajax
+            go: function (obj) {
+                console.log('obj',obj)
+                var xhr = this.createXmlHttp();
+                if (!xhr) {
+                    alert("您的系统或浏览器不支持XMLHttpRequest对象！");
+                    return;
+                }
+
+                /*****通用ajax请求参数*****S****/
+                //  var _user=window.localStorage.getItem("userData");
+                //  if(_user){
+                //     _user=JSON.parse(_user);
+                //     obj.data.token = encodeURIComponent(_user.token);
+                //  }
+                /*****通用ajax请求参数*****E****/
+                if(obj.method=="get"){
+                obj.url +=(obj.url.indexOf("?") >= 0 ? "&":"?") + ("rand=" + Math.random()*10);
+                }
+
+                if(obj.data){
+                    obj.data = this.urlParamsFormat(obj.data);    
+                    if (obj.method === "get") {
+                        obj.url +="&"+obj.data;
+                    }        
+                }
+                obj.async = typeof obj.async == "undefined" ? true : obj.async;
+                obj.method = typeof obj.method == "undefined" ? "get" : obj.method;
+
+                xhr.open(obj.method, obj.url, obj.async);// false是同步 true是异步
+                if(obj.reqHeaders){
+                    for(let key in obj.reqHeaders){
+                        xhr.setRequestHeader(key,obj.reqHeaders[key]);
+                    }
+                }
+                if (obj.method === "post") {
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    //  xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.send(obj.data);
+                } else  {
+                    xhr.send(null);
+                }
+                
+                // 异步
+                if (obj.async) {
+                    // 异步的时候需要触发onreadystatechange事件
+                    xhr.onreadystatechange = function () {
+                        //   console.info("xhr.readyState:"+xhr.readyState);
+                        // 执行完成
+                        if (xhr.readyState == 4) {
+                            callBack();
+                        }
+                    }
+                }else{ // 同步
+                callBack();
+                }
+
+                // 返回数据
+                function callBack() {
+                    // 判断是否返回正确
+                    //  console.info("xhr.status:"+xhr.status);
+                    if (xhr.status == 200) {
+                        var data=xhr.responseText;
+                        obj.success(data);
+                    } else {
+                    //    var msg="网络繁忙，请稍后再试或联系管理员。"+ "xhr.status：" + xhr.status + "，xhr.statusText：" + xhr.statusText
+                    var msg="网络繁忙，请稍候再试！";
+                    obj.error?obj.error(msg):alert(msg);
+                    }
+                }
+            },
+            //根据不同的浏览器使用相应的方式来创建异步对象
+            createXmlHttp: function () {
+                var xhobj = false;
+                try { xhobj = new XMLHttpRequest(); }
+                catch (e1) {
+                    try {
+                        xhobj = new ActiveXObject("Msxml2.XMLHTTP"); //iemsxml3.0+
+                    } catch (e2) {
+                        try {
+                            xhobj = new ActiveXObject("Micsoft.XMLHTTP"); //iemsxml2.6
+                        }
+                        catch (e3) {
+                            xhobj = false;
+                        }
+                    }
+                }
+                if (!xhobj && typeof XMLHttpRequest != 'undefined') {//Firefox,Opera 8.0+,Safari.谷歌浏览器
+                    xhobj = new XMLHttpRequest();
+                }
+                return xhobj;
+            },
+
+            urlParamsFormat: function (data) {
+                var arr = [];
+                for (var keyName in data) {
+                    arr.push(encodeURIComponent(keyName) + "=" + encodeURIComponent(data[keyName]));
+                }
+                return arr.join("&");
+            }
+        }
+
+        function GetUrlParms(key){
+            var args = new Object();
+            var query = (location.search.substring(1)); //获取查询串
+            var pairs = query.split("&"); //在&号处断开
+            for (var i = 0; i < pairs.length; i++) {
+                var pos = pairs[i].indexOf('='); //查找name=value
+                if (pos == -1) continue; //如果没有找到就跳过
+                var argname = pairs[i].substring(0, pos); //提取name
+                var value = pairs[i].substring(pos + 1); //提取value
+                args[argname] = decodeURI(value); //存为属性
+            }
+            return args[key]
+         }
+
+         const checkLogin=()=>{
+            const code=GetUrlParms('code')
+            const ls_token=localStorage.getItem('token')
+            const ls_orgType=localStorage.getItem('orgType')
+            if(ls_token&&ls_orgType){
+                checkGo(ls_token,ls_orgType)
+            }else if(code){
+                 najax.go({
+                        url:`http://www.zs.qsst.moa.gov.cn/sofn-tts-web-branch/ttsLogin/singleLogin?code=${code}`,
+                        method:'get',
+                        success:res => {
+                            res=eval("("+res+")");
+                            let msg=res.msg;
+                            if(res.httpCode!=200){
+                                alert(msg)
+                                // checkOauth()
+                            }else{
+                                const orgType=res.data?.orgType
+                                if(orgType){
+                                    const token=res.data?.token
+                                    localStorage.setItem('token',token)
+                                    localStorage.setItem('orgType',orgType)
+                                    checkGo(token,orgType)
+                                }else{
+                                    alert('该账号没有所属机构，请联系管理员')
+                                    // checkOauth()
+                                }
+                            }
+                        },
+                        error:msg=> {
+                            alert(msg)
+                            // checkOauth()
+                        }
+                 });
+            }else{
+                checkOauth()
+            }
+         }
+
+         const ipAddress='http://202.127.45.194:9092'
+
+         const checkOauth=()=>{
+            const oauthUrl=`https://ciam.agri.cn/idp/authCenter/authenticate?response_type=code&client_id=ZLAQ&state=xyx&redirect_uri=${encodeURIComponent(`${ipAddress}/singleLogin.html`)}`
+            location.href=oauthUrl
+         }
+
+         const checkGo=(token,orgType)=>{
+            const orgTypeMap={
+                'ASMS':'jg',
+                'ADS':'jc',
+                'ALES':'zf',
+                'TTS':''
+            }
+            localStorage.setItem('token',token)
+            let type=orgTypeMap[orgType]
+            if(type){
+                location.href=`${ipAddress}/${type}/#/?token=${token}`
+            }else{
+                location.href=`${ipAddress}/#/pages/index/index`
+            }
+        }       
+        
+        checkLogin()
+
+   </script>
+  </head>
+  <body  style="overflow:hidden;" >
+    <div class="div_loading_c">
+        <div class="logo">
+            <div class="left_logo_text">
+                <p>国家追溯</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="app" ></div>
+
+  </body>
+  <script>
+    　　// VConsole 默认会挂载到 `window.VConsole` 上
+    　　window.vConsole = new window.VConsole({
+    　　　　defaultPlugins: ['system', 'network', 'element', 'storage'],
+           // 可以在此设定要默认加载的面板
+           maxLogNumber: 1000,
+           // disableLogScrolling: true,
+           onReady: () => {
+           　　console.log('vConsole: onReady');
+           },
+           onClearLog: () => {
+           　　console.log('vConsole: onClearLog');
+           }
+    　　});
+   
+      
+    </script>
+</html>
