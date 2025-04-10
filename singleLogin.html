@@ -47,7 +47,7 @@
            display: flex; 
         }
     </style>
-    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+    <!-- <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script> -->
     <script>
         const najax = {
             //原生js实现ajax
@@ -181,6 +181,7 @@
                             let msg=res.msg;
                             if(res.httpCode!=200){
                                 alert(msg)
+                                logout()
                                 // checkOauth()
                             }else{
                                 const orgType=res.data?.orgType
@@ -188,15 +189,17 @@
                                     const token=res.data?.token
                                     localStorage.setItem('token',token)
                                     localStorage.setItem('orgType',orgType)
-                                    // checkGo(token,orgType)
+                                    checkGo(token,orgType)
                                 }else{
                                     alert('该账号没有所属机构，请联系管理员')
+                                    logout()
                                     // checkOauth()
                                 }
                             }
                         },
                         error:msg=> {
                             alert(msg)
+                            logout()
                             // checkOauth()
                         }
                  });
@@ -219,7 +222,6 @@
                 'ALES':'zf',
                 'TTS':''
             }
-            localStorage.setItem('token',token)
             let type=orgTypeMap[orgType]
             if(type){
                 location.href=`${ipAddress}/${type}/#/?token=${token}`
@@ -228,8 +230,31 @@
             }
         }       
         
-        checkLogin()
+        const logout=()=>{
+            localStorage.removeItem('token')
+            localStorage.removeItem('orgType')
+        }
 
+        // checkLogin()
+        function showAlertSmall(msg, time) {
+            var div_alert = document.querySelector("#div_alert");
+            if (div_alert.style.opacity == "0.8") {
+                return;
+            }
+            var $time = 2000;
+            if (time) $time = time
+            div_alert.innerText=msg;
+            div_alert.style.opacity = "0.8";
+            div_alert.style.zIndex = 12000;
+            setTimeout(function () {
+                div_alert.style.opacity = "0";
+                div_alert.style.zIndex = 0;
+            }, $time)
+        }
+
+        window.onload=()=>{
+            showAlertSmall('没有对应用户！',30000)
+        }
    </script>
   </head>
   <body  style="overflow:hidden;" >
@@ -242,22 +267,22 @@
     </div>
 
     <div id="app" ></div>
-
+    <div id="div_alert" style="transition:opacity 0.5s; -webkit-transition: opacity 0.5s;  font-size:20px; z-index:12001;  background-color:black; opacity:0; border-radius:0.08rem; color:white; position:absolute; bottom:50%;  left:50%; transform:translate(-50%,0%); padding:10px 15px; ">提示</div>
   </body>
   <script>
     　　// VConsole 默认会挂载到 `window.VConsole` 上
-    　　window.vConsole = new window.VConsole({
-    　　　　defaultPlugins: ['system', 'network', 'element', 'storage'],
-           // 可以在此设定要默认加载的面板
-           maxLogNumber: 1000,
-           // disableLogScrolling: true,
-           onReady: () => {
-           　　console.log('vConsole: onReady');
-           },
-           onClearLog: () => {
-           　　console.log('vConsole: onClearLog');
-           }
-    　　});
+    // 　　window.vConsole = new window.VConsole({
+    // 　　　　defaultPlugins: ['system', 'network', 'element', 'storage'],
+    //        // 可以在此设定要默认加载的面板
+    //        maxLogNumber: 1000,
+    //        // disableLogScrolling: true,
+    //        onReady: () => {
+    //        　　console.log('vConsole: onReady');
+    //        },
+    //        onClearLog: () => {
+    //        　　console.log('vConsole: onClearLog');
+    //        }
+    // 　　});
    
       
     </script>
