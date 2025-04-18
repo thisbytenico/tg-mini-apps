@@ -235,7 +235,8 @@
             localStorage.removeItem('orgType')
         }
 
-        // checkLogin()
+         checkLogin()
+
         function showAlertSmall(msg, time) {
             if(msg=='没有对应用户！')
                   msg='该用户未在平台注册，请先注册后再登录！'
@@ -254,9 +255,6 @@
             }, $time)
         }
 
-        window.onload=()=>{
-            showAlertSmall('没有对应用户！')
-        }
    </script>
   </head>
   <body  style="overflow:hidden;" >

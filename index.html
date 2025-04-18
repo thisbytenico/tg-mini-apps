@@ -35,18 +35,19 @@
         }
          const facebookShare = document.getElementById("facebookShare");
          facebookShare.onclick=()=>{
-            console.log(document.querySelector("#shareContent").value)
-            const text = `分享的文案`
-            const link = 'https://kcex.com/'// 分享的页面链接，特别注意这里不需要encode
-            FB.ui({
-                display: 'popup',
-                method: 'share',
-                hashtag:document.querySelector("#shareContent").value,//tag
-                href: 'https://www.kcex.com/register?inviteCode=123456',
-                quote: text
-            }, function(response){
-                console.log('response',response)
-            })
+            // console.log(document.querySelector("#shareContent").value)
+            // const text = `分享的文案`
+            // const link = 'https://kcex.com/'// 分享的页面链接，特别注意这里不需要encode
+            // FB.ui({
+            //     display: 'popup',
+            //     method: 'share',
+            //     hashtag:document.querySelector("#shareContent").value,//tag
+            //     href: 'https://www.kcex.com/register?inviteCode=123456',
+            //     quote: text
+            // }, function(response){
+            //     console.log('response',response)
+            // })
+            window.open(`weixin://dl/business/?appid=wx0cdc788372defa76&path=/pages/productDetail&query=smartPackageId%3DN10TH5TZF6&env_version=release`)
          }
 
         // 获取图片元素和分享按钮
