@@ -1,0 +1,1 @@
+import{_ as a,g as t,h as s,w as e,aj as o,p as n}from"./index-BUnLS0SE.js";const c=a({name:"",components:{},data:()=>({}),created(){},watch:{},computed:{},methods:{actionXxx(){},doSomething(){},ajaxXxx(){}}},[["render",function(a,c,d,r,m,x){const l=n;return t(),s(l,{class:"dw-cell-group"},{default:e((()=>[o(a.$slots,"default")])),_:3})}]]);export{c as _};
