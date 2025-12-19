@@ -1,0 +1,18 @@
+
+.dw-card {
+  background: #fff;
+  border-radius: 24rpx;
+  &.square{
+    border-radius: 8rpx;
+  }
+  &.none{
+    border-radius: 0;
+  }
+  &-header{
+    padding: 16rpx 24rpx;
+    border-bottom: 1px solid #efefef;
+  }
+  &-body{
+    padding: 16rpx 24rpx;
+  }
+}

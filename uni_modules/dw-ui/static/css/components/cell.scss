@@ -1,0 +1,41 @@
+.dw-cell-group{
+  .dw-cell + .dw-cell{
+    border-top: 1px solid #efefef;
+  }
+}
+
+.dw-cell{
+  background: #FFF;
+  &.round{
+    border-radius: 24rpx;
+  }
+  &.square{
+    border-radius: 8rpx;
+  }
+  &-body{
+    display: flex;
+    align-items: center;
+    padding: 24rpx;
+  }
+  &-prefix{
+    flex: 0 0 auto;
+    margin-right: 24rpx;
+  }
+  &-content{
+    flex: 1;
+  }
+  &-extra{
+    flex: 0 0 auto;
+    margin-left: 24rpx;
+    display: flex;
+    align-items: center;
+  }
+  &-footer{
+    border-top: 1px solid #efefef;
+    padding: 24rpx;
+    &__noborder{
+      border: none;
+      padding-top: 0;
+    }
+  }
+}

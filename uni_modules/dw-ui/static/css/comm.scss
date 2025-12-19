@@ -1,0 +1,110 @@
+@for $i from 0 through 40 {
+  .mt#{$i} {
+    margin-top: #{$i * 2}rpx !important;
+  }
+
+  .mb#{$i} {
+    margin-bottom: #{$i * 2}rpx !important;
+  }
+
+  .ml#{$i} {
+    margin-left: #{$i * 2}rpx !important;
+  }
+
+  .mr#{$i} {
+    margin-right: #{$i * 2}rpx !important;
+  }
+
+  .pt#{$i} {
+    padding-top: #{$i * 2}rpx !important;
+  }
+
+  .pb#{$i} {
+    padding-bottom: #{$i * 2}rpx !important;
+  }
+
+  .pl#{$i} {
+    padding-left: #{$i * 2}rpx !important;
+  }
+
+  .pr#{$i} {
+    padding-right: #{$i * 2}rpx !important;
+  }
+
+  .ft#{$i} {
+    font-size: #{$i * 2}rpx !important;
+  }
+}
+
+@each $i in (100, 200, 300, 400, 500, 600, 700, 800, 900) {
+  .fw#{$i} {
+    font-weight: $i
+  }
+}
+
+.text-level1{
+  color: #333;
+}
+.text-level2{
+  color: #666;
+}
+
+.text-desc{
+  color: #999;
+}
+
+.text-underline{
+  text-decoration: underline;
+}
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+
+
+.ellipsis{
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Flex 样式
+.flex{
+  display: flex;
+}
+.flex-col{flex-direction: column;}
+.flex-wrap{flex-wrap: wrap;}
+
+.flex-0{ flex: 0 0 auto}
+.flex-1{ flex: 1 1 0%; }
+.flex-none{ flex: none; }
+
+.justify-start{justify-content: flex-start;}
+.justify-end{justify-content: flex-end;}
+.justify-center{justify-content: center;}
+.justify-between{justify-content: space-between;}
+.justify-around{justify-content: space-around;}
+
+.items-start{align-items: flex-start;}
+.items-end{align-items: flex-end;}
+.items-center{align-items: center;}
+
+
+// Grid 样式
+.grid{
+  display: grid;
+}
+@for $i from 0 through 10 {
+  .gap#{$i} {
+    gap: #{$i * 4}rpx !important;
+  }
+}
+
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
