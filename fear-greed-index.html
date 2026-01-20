@@ -61,12 +61,12 @@
             start: {
                 width: 115,
                 align: 'right',
-                fontSize: 10
+                fontSize: isMobile ? 10 : 14,
             },
             end: {
                 width: 145,
                 align: 'left',
-                fontSize: 10
+                fontSize: isMobile ? 10 : 14,
             }
         }
 
@@ -116,7 +116,7 @@
                         },
                         axisLabel: {
                             color: '#666',
-                            fontSize: 10, // 减小字体大小，避免移动端重叠
+                            fontSize: isMobile ? 10 : 14, // 减小字体大小，避免移动端重叠
                             rotate: 0, // 旋转标签，避免重叠
                             // interval: Math.floor(dates.length / 6), // 控制标签显示数量
                             formatter: function(val, i){
@@ -134,7 +134,8 @@
                             //     // 只显示4个标签：第一个、1/3处、2/3处、最后一个
                             //     var length = dates.length;
                             //     return index === 0 || index === Math.floor(length/3) || index === Math.floor(2*length/3) || index === length-1;
-                            // }
+                            // },
+                            padding: [isMobile ? 2 : 8, 0, 0, 0] // 增加与x轴的距离4px
                         },
                         axisTick: {
                             show: false
@@ -181,7 +182,8 @@
                 myChart.setOption(option);
         }
 
-        window.setData(dates, values,'恐慌與貪婪指數圖表111');
+        // 初始化图表
+        window.setData(dates, values, '恐慌與貪婪指數圖表');
 
         // 响应式调整
         window.addEventListener('resize', function() {
