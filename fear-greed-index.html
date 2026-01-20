@@ -59,14 +59,14 @@
         // 这里样式可以用padding， 也可以用宽度和对齐方式来做（我用这种），
         const richCss = {
             start: {
-                width: 115,
+                width: 105,
                 align: 'right',
-                fontSize: isMobile ? 10 : 14,
+                fontSize: isMobile ? 10 : 18,
             },
             end: {
                 width: 145,
                 align: 'left',
-                fontSize: isMobile ? 10 : 14,
+                fontSize: isMobile ? 10 : 18,
             }
         }
 
@@ -80,12 +80,12 @@
                 var option = {
                     title: {
                         text: title,
-                        left: '2%', // 调整为居中显示
+                        left: isMobile ? '2%' : '2.4%', // 调整为居中显示
                         top: isMobile ? '6%' : '4%', // 调整顶部距离，使标题位置更加美观
                         textStyle: {
-                            fontSize: 16,
+                            fontSize: 18,
                             fontWeight: 'bold',
-                            color: '#333'
+                            color: '#666'
                         }
                     },
                     // tooltip: {
@@ -107,7 +107,7 @@
                     },
                     xAxis: {
                         type: 'category',
-                        boundaryGap: false,
+                        boundaryGap: !isMobile,
                         data: xDates,
                         axisLine: {
                             lineStyle: {
@@ -115,26 +115,27 @@
                             }
                         },
                         axisLabel: {
-                            color: '#666',
-                            fontSize: isMobile ? 10 : 14, // 减小字体大小，避免移动端重叠
+                            color: '#A2A9B6',
+                            fontSize: isMobile ? 10 : 18, // 减小字体大小，避免移动端重叠
                             rotate: 0, // 旋转标签，避免重叠
                             // interval: Math.floor(dates.length / 6), // 控制标签显示数量
-                            formatter: function(val, i){
-                                if (i === 0) {
-                                    return `{start| ${val}}`
-                                } else if (i === dates.length - 1) {
-                                    return `{end| ${val}}`
-                                }  else if (i === Math.ceil(dates.length / 2)) {
-                                    return val
-                                }
-                                return val
-                            },
-                            rich: richCss,  
+                            // formatter: function(val, i){
+                            //     if (i === 0) {
+                            //         return `{start| ${val}}`
+                            //     } else if (i === dates.length - 1) {
+                            //         return `{end| ${val}}`
+                            //     }  else if (i === Math.ceil(dates.length / 2)) {
+                            //         return val
+                            //     }
+                            //     return val
+                            // },
+                            // rich: richCss,  
                             // interval: function(index, value) {
                             //     // 只显示4个标签：第一个、1/3处、2/3处、最后一个
                             //     var length = dates.length;
                             //     return index === 0 || index === Math.floor(length/3) || index === Math.floor(2*length/3) || index === length-1;
                             // },
+                            // position:"insideBottom",
                             padding: [isMobile ? 2 : 8, 0, 0, 0] // 增加与x轴的距离4px
                         },
                         axisTick: {
@@ -150,8 +151,8 @@
                             show: false
                         },
                         axisLabel: {
-                            color: '#666',
-                            fontSize: 10 // 减小字体大小
+                            color: '#A2A9B6',
+                            fontSize: isMobile ? 10 : 18 // 减小字体大小
                         },
                         axisTick: {
                             show: false
@@ -177,7 +178,25 @@
                         }
                     ]
                 };
-
+                if(isMobile){
+                    option.xAxis.axisLabel.formatter = function(val, i){
+                            if (i === 0) {
+                                return `{start| ${val}}`
+                            } else if (i === dates.length - 1) {
+                                return `{end| ${val}}`
+                            }  else if (i === Math.ceil(dates.length / 2)) {
+                                return val
+                            }
+                            return val
+                        };
+                        option.xAxis.axisLabel.rich=richCss;
+                }else{
+                    option.xAxis.axisLabel.interval = function(index, value) {
+                        // 只显示4个标签：第一个、1/3处、2/3处、最后一个
+                        var length = dates.length;
+                        return index === 0 || index === Math.floor(length/3) || index === Math.floor(2*length/3) || index === length-1;
+                    }
+                }
                 // 使用配置项显示图表
                 myChart.setOption(option);
         }
