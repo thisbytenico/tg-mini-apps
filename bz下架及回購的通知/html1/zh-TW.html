@@ -1,0 +1,24 @@
+{{$notice.header}}
+<div style="width: 100%;box-sizing: border-box">
+<p style="font-family: DIN Pro,'Open Sans', sans-serif;font-size: 18px;color: #151617; font-weight: bold;margin-bottom: 16px;">
+尊敬的 KCEX 用戶：
+</p>
+
+<div style="font-family: DIN Pro,'Open Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 14px;line-height: 22px;color: #444545;">
+<p style="margin-bottom: 20px;">因 <span style="font-weight:bold;">{{coinSymbol}}</span> 項目流動性不足，已無法維持正常交易。為保障您的資產安全與交易體驗，<span style="font-weight:bold;">KCEX 已下架相關交易市場，並對持幣用戶進行回購。</span></p>
+<p style="margin-top: 20px;">
+    <div style="font-weight:bold;">回購詳情</div>
+    <div>KCEX 將以 <span style="font-weight:bold;">{{coinPrice}} USDT</span>（最終成交價）回購 <span style="font-weight:bold;">{{coinName}} ({{coinSymbol}})</span>。</div>
+</p>
+<p style="margin-top: 20px;">
+    <div>注意事項</div>
+    <div>- KCEX 不再支持 <span style="font-weight:bold;">{{coinName}} ({{coinSymbol}})</span> 的充幣、提幣及交易服務。</div>
+    <div>- 回購對應的 USDT 已空投至您的帳戶。請至【錢包】→【交易記錄】→【其他 】查看空投紀錄，並留意資產變動。</div>
+    <div>- 持有代币價值低於 {{minValue}} USDT 的用戶，將統一按 {{minValue}} USDT 進行空投。</div>
+</p>
+<p style="margin-top: 20px;">
+    如有任何疑問，歡迎隨時聯繫客服團隊。
+</p>
+</div>
+</div>
+{{$footer}}

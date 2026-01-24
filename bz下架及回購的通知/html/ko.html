@@ -1,0 +1,24 @@
+{{$notice.header}}
+<div style="width: 100%;box-sizing: border-box">
+<p style="font-family: DIN Pro,'Open Sans', sans-serif;font-size: 18px;color: #151617; font-weight: bold;margin-bottom: 16px;">
+KCEX 사용자님께,
+</p>
+
+<div style="font-family: DIN Pro,'Open Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 14px;line-height: 22px;color: #444545;">
+<p style="margin-bottom: 20px;"><span style="font-weight:bold;">{{coinSymbol}}</span> 프로젝트의 유동성 부족으로 인해 정상적인 거래를 유지할 수 없게 되었습니다. 고객님의 자산 안전과 거래 경험을 보호하기 위해 <span style="font-weight:bold;">KCEX는 관련 거래 시장을 상장 폐지하고 토큰 보유자에 대해 바이백을 진행합니다.</span></p>
+<p style="margin-top: 20px;">
+    <div style="font-weight:bold;">바이백 상세</div>
+    <div>KCEX 將以 <span style="font-weight:bold;">{{coinPrice}} USDT</span>（最終成交價）回購 <span style="font-weight:bold;">{{coinName}} ({{coinSymbol}})</span>。</div>
+</p>
+<p style="margin-top: 20px;">
+    <div>注意事項</div>
+    <div>- 상장 폐지 후, KCEX는 <span style="font-weight:bold;">{{coinName}} ({{coinSymbol}})</span>의 입금, 출금 및 거래 서비스를 더 이상 지원하지 않습니다.</div>
+    <div>- 바이백이 완료되면 해당 USDT는 에어드롭 형태로 고객님의 계정에 지급됩니다. 【지갑】→【거래 기록】→【기타】에서 에어드롭 내역을 확인하시고 자산 변동에 유의해 주시기 바랍니다.</div>
+    <div>- 持有代币價值低於 {{minValue}} USDT 的用戶，將統一按 {{minValue}} USDT 進行空投。</div>
+</p>
+<p style="margin-top: 20px;">
+    如有任何疑問，歡迎隨時聯繫客服團隊。
+</p>
+</div>
+</div>
+{{$footer}}

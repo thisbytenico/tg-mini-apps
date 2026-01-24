@@ -1,0 +1,29 @@
+{{$notice.header}}
+<div style="width: 100%;box-sizing: border-box">
+<p style="font-family: DIN Pro,'Open Sans', sans-serif;font-size: 18px;color: #151617;font-weight: bold;margin-bottom: 16px;">
+Kære KCEX-bruger,
+</p>
+
+<div style="font-family: DIN Pro,'Open Sans', sans-serif;font-size: 14px;line-height: 22px;color: #444545;">
+<p style="margin-bottom: 20px;">
+På grund af lav likviditet for <span style="font-weight:bold;">{{coinSymbol}}</span> kan normal handel ikke fortsætte. For at beskytte dine aktiver og din oplevelse <span style="font-weight:bold;">har KCEX fjernet de relevante markeder og gennemført et <b>tilbagekøb</b> for token-indehavere.</span>
+</p>
+
+<p style="margin-top: 20px;">
+    <div style="font-weight:bold;">Detaljer om tilbagekøb</div>
+    <div>KCEX køber <span style="font-weight:bold;">{{coinName}} ({{coinSymbol}})</span> tilbage til <span style="font-weight:bold;">{{coinPrice}} USDT</span> (endelig pris).</div>
+</p>
+
+<p style="margin-top: 20px;">
+    <div>Bemærk</div>
+    <div>- KCEX understøtter ikke længere indbetaling, udbetaling eller handel med <span style="font-weight:bold;">{{coinName}} ({{coinSymbol}})</span>.</div>
+    <div>- USDT fra tilbagekøbet er airdroppet til din konto. Tjek ‎[Wallet] → [Transaktionshistorik] → [Andre]‎.</div>
+    <div>- Brugere med tokenværdi under {{minValue}} USDT modtager et fast airdrop på {{minValue}} USDT.</div>
+</p>
+
+<p style="margin-top: 20px;">
+Hvis du har spørgsmål, kontakt venligst support.
+</p>
+</div>
+</div>
+{{$footer}}
