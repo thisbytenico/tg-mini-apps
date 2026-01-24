@@ -168,7 +168,7 @@
 
 
 
-        window.setData=(xDates, yValues,title)=>{
+        window.setData=(xDates, yValues,chartTitle, lang)=>{
                let footerXHtml = ''
                footerXHtml+=`<div class="footer-x-item">${xDates[0]}</div>`
                footerXHtml+=`<div class="footer-x-item">${xDates[Math.floor(xDates.length/3)]}</div>`
@@ -176,18 +176,25 @@
                footerXHtml+=`<div class="footer-x-item">${xDates[xDates.length-1]}</div>`
                document.querySelector('.footer-x').innerHTML = footerXHtml
                 console.log('xDates',xDates,yValues)
+                const isRtl = lang === 'fa-IR'|| lang === 'ar-AE';
+                const left= isMobile ? '2%' : '2.4%'
+                let title={
+                    text: chartTitle,
+                    top: isMobile ? '6%' : '6%', // 调整顶部距离，使标题位置更加美观
+                    textStyle: {
+                        fontSize: 32,
+                        fontWeight: 'bold',
+                        color: '#666'
+                    }
+                }
+                if(isRtl){
+                    title.right=left
+                }else{
+                    title.left=left
+                }
                 // 配置选项
                 var option = {
-                    title: {
-                        text: title,
-                        left: isMobile ? '2%' : '2.4%', // 调整为居中显示
-                        top: isMobile ? '6%' : '6%', // 调整顶部距离，使标题位置更加美观
-                        textStyle: {
-                            fontSize: 32,
-                            fontWeight: 'bold',
-                            color: '#666'
-                        }
-                    },
+                    title,
                     tooltip: {
                         trigger: 'axis',
                         formatter: function(params) {
@@ -304,7 +311,7 @@
         }
 
         // 初始化图表
-        window.setData(dates, values, '恐慌與貪婪指數圖表');
+        // window.setData(dates, values,  'نمودار شاخص ترس و طمع', 'fa-IR');
  
         // 响应式调整
         window.addEventListener('resize', function() {
