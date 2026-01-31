@@ -41,6 +41,7 @@
             position: absolute;
             top:5%;
             left:40px;
+            text-align: start;
         }
         /* 响应式调整 */
         @media (max-width: 768px) {
@@ -205,9 +206,11 @@
                 if(isRtl){
                     title.right=left
                     elTitle.style.right=40+'px'
+                    elTitle.style.textAlign='right'
                 }else{
                     title.left=left
                     elTitle.style.left=40+'px'
+                    elTitle.style.textAlign='left'
                 }
                 // 配置选项
                 var option = {
