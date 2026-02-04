@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浪漫粉色系婚礼请柬</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe6e6 0%, #ffcdd2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 背景装饰 */
+        .bg-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            background-color: #ff6b6b;
+            width: 20px;
+            height: 20px;
+            transform: rotate(45deg);
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff6b6b;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: rotate(45deg) translateY(0) scale(1);
+            }
+            50% {
+                transform: rotate(45deg) translateY(-20px) scale(1.1);
+            }
+            100% {
+                transform: rotate(45deg) translateY(0) scale(1);
+            }
+        }
+
+        /* 主容器 */
+        .invitation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* 标题区域 */
+        .header {
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #ff8fab;
+        }
+
+        /* 主图片区域 */
+        .main-image {
+            margin: 40px 0;
+            animation: fadeIn 1s ease-in-out 0.3s both;
+        }
+
+        .main-image img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .main-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* 婚礼信息 */
+        .wedding-info {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.1);
+            margin: 40px 0;
+            animation: fadeIn 1s ease-in-out 0.6s both;
+        }
+
+        .info-item {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .info-item strong {
+            color: #ff6b6b;
+        }
+
+        /* 按钮区域 */
+        .buttons {
+            margin: 40px 0;
+            animation: fadeIn 1s ease-in-out 0.9s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 0 10px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-secondary {
+            background: #ff8fab;
+            box-shadow: 0 4px 15px rgba(255, 143, 171, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: #ff758f;
+            box-shadow: 0 6px 20px rgba(255, 143, 171, 0.4);
+        }
+
+        /* 页脚 */
+        .footer {
+            margin-top: 60px;
+            color: #ff8fab;
+            font-size: 0.9rem;
+            animation: fadeIn 1s ease-in-out 1.2s both;
+        }
+
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .main-image img {
+                max-width: 300px;
+            }
+
+            .wedding-info {
+                padding: 20px;
+            }
+
+            .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景装饰 -->
+    <div class="bg-decoration">
+        <div class="heart" style="top: 10%; left: 10%; animation-delay: 0s;"></div>
+        <div class="heart" style="top: 20%; right: 15%; animation-delay: 1s;"></div>
+        <div class="heart" style="bottom: 10%; left: 20%; animation-delay: 2s;"></div>
+        <div class="heart" style="bottom: 20%; right: 10%; animation-delay: 3s;"></div>
+        <div class="heart" style="top: 50%; left: 5%; animation-delay: 1.5s;"></div>
+        <div class="heart" style="top: 50%; right: 5%; animation-delay: 2.5s;"></div>
+    </div>
+
+    <div class="invitation-container">
+        <!-- 标题 -->
+        <div class="header">
+            <h1>我们结婚啦</h1>
+            <p>诚邀您参加我们的婚礼</p>
+        </div>
+
+        <!-- 主图片 -->
+        <div class="main-image">
+            <img src="liqiang.png" alt="婚礼照片">
+        </div>
+
+        <!-- 婚礼信息 -->
+        <div class="wedding-info">
+            <div class="info-item">
+                <strong>新郎 & 新娘</strong>：李强 & 新娘
+            </div>
+            <div class="info-item">
+                <strong>婚礼时间</strong>：2024年XX月XX日 12:00
+            </div>
+            <div class="info-item">
+                <strong>婚礼地点</strong>：筠连县秦味轩山庄
+            </div>
+            <div class="info-item">
+                <strong>联系电话</strong>：XXXXXXXXXXX
+            </div>
+        </div>
+
+        <!-- 按钮 -->
+        <div class="buttons">
+            <a href="https://uri.amap.com/marker?position=104.53642,28.17569&name=筠连县秦味轩山庄" target="_blank" class="btn">
+                📍 查看地图
+            </a>
+            <a href="javascript:void(0)" class="btn btn-secondary" onclick="toggleMusic()">
+                🎵 音乐控制
+            </a>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>期待您的到来，与我们共同见证幸福时刻</p>
+        </div>
+    </div>
+
+    <!-- 音乐元素 -->
+    <audio id="weddingMusic" loop>
+        <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio>
+
+    <script>
+        // 音乐控制
+        const audio = document.getElementById('weddingMusic');
+        let isPlaying = false;
+
+        // 自动播放音乐
+        function autoPlayMusic() {
+            if (audio.paused) {
+                audio.play().catch(err => {
+                    console.log('音乐播放需要用户交互:', err);
+                });
+                isPlaying = true;
+            }
+        }
+
+        // 切换音乐播放状态
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+            } else {
+                audio.play();
+                isPlaying = true;
+            }
+        }
+
+        // 页面加载完成后尝试自动播放
+        window.onload = function() {
+            // 创建点击事件监听器，首次点击时播放音乐
+            document.addEventListener('click', autoPlayMusic, { once: true });
+            document.addEventListener('touchstart', autoPlayMusic, { once: true });
+        };
+
+        // 生成更多随机爱心
+        function createHearts() {
+            const decoration = document.querySelector('.bg-decoration');
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                decoration.appendChild(heart);
+            }
+        }
+
+        // 页面加载完成后创建更多爱心
+        window.addEventListener('load', createHearts);
+    </script>
+</body>
+</html>

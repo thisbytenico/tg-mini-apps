@@ -9,7 +9,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
         <!-- 引入开源字体 Noto Sans CJK 作为微软雅黑的替代方案 -->
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;500;700&display=swap" rel="stylesheet">
+        <!-- 引入支持斯里兰卡语的字体 -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;700&display=swap" rel="stylesheet">
         <style>
         html, body {
             height: 100%;
@@ -17,7 +18,7 @@
             overflow: hidden;
         }
         body {
-            font-family: "Noto Sans SC", "Noto Sans KR",  "Noto Sans Lao", Arial, sans-serif;
+            font-family: "Noto Sans SC", "Noto Sans KR", "Noto Sans Sinhala",  Arial, sans-serif;
             background-color: white;
             margin: 0;
         }
@@ -40,6 +41,7 @@
             position: absolute;
             top:5%;
             left:40px;
+            text-align: start;
         }
         /* 响应式调整 */
         @media (max-width: 768px) {
@@ -203,10 +205,12 @@
                 }
                 if(isRtl){
                     title.right=left
-                    elTitle.style.right=40+'px'
+                    elTitle.style.right=60+'px'
+                    elTitle.style.textAlign='right'
                 }else{
                     title.left=left
                     elTitle.style.left=40+'px'
+                    elTitle.style.textAlign='left'
                 }
                 // 配置选项
                 var option = {
@@ -234,7 +238,7 @@
                         data: xDates,
                         axisLine: {
                             lineStyle: {
-                                color: '#999'
+                                color: '#e0e0e0'
                             }
                         },
                         axisLabel: {
@@ -289,6 +293,21 @@
                             }
                         }
                     },
+                    visualMap: {
+                        show: false,
+                        type: 'continuous', // 使用连续型 visualMap
+                        min: 0,
+                        max: 100,
+                        inRange: {
+                            color: [
+                            '#FF4761',     // 0-20 红色
+                            '#FA8C16', // 20-40 浅红色
+                            '#FD0',        // 40-60 灰色
+                            '#75C08F',  // 60-80 浅绿色
+                            '#0BBA74'        // 80-100 绿色
+                            ]
+                        }
+                    },
                     series: [
                         {
                             name: '恐慌與貪婪指數',
@@ -297,8 +316,8 @@
                             smooth: true,
                             symbol: 'none',
                             lineStyle: {
-                                color: '#FFB800',
-                                width: 2
+                                // color: '#FFB800',
+                                width: 3
                             }
                         }
                     ]
@@ -327,7 +346,7 @@
         }
 
         // 初始化图表
-        // window.setData(dates, values,  'نمودار شاخص ترس و طمع', 'fa-IR');
+         window.setData(dates, values,  'نمودار شاخص ترس و طمع', 'fa-IR');
         // window.setData(dates, values,  '공포 & 탐욕 지수 차트');
 
         // 响应式调整

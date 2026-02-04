@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>现代简约风格婚礼请柬</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 主容器 */
+        .invitation-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        /* 标题区域 */
+        .header {
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            color: #222;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            font-size: 1rem;
+            color: #999;
+            letter-spacing: 1px;
+        }
+
+        /* 装饰线 */
+        .decorative-line {
+            width: 60px;
+            height: 1px;
+            background-color: #ddd;
+            margin: 30px auto;
+            animation: fadeIn 1s ease-in-out 0.2s both;
+        }
+
+        /* 主图片区域 */
+        .main-image {
+            margin: 60px 0;
+            animation: fadeIn 1s ease-in-out 0.3s both;
+        }
+
+        .main-image img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            border-radius: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .main-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* 婚礼信息 */
+        .wedding-info {
+            background: #fff;
+            padding: 40px;
+            margin: 60px 0;
+            animation: fadeIn 1s ease-in-out 0.6s both;
+            border: 1px solid #eee;
+        }
+
+        .info-item {
+            margin: 20px 0;
+            font-size: 1rem;
+            color: #333;
+            letter-spacing: 0.5px;
+        }
+
+        .info-item strong {
+            color: #222;
+            font-weight: 500;
+        }
+
+        /* 按钮区域 */
+        .buttons {
+            margin: 60px 0;
+            animation: fadeIn 1s ease-in-out 0.9s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 0 10px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #222;
+            border: 1px solid #222;
+        }
+
+        .btn-secondary:hover {
+            background: #f9f9f9;
+        }
+
+        /* 页脚 */
+        .footer {
+            margin-top: 80px;
+            color: #999;
+            font-size: 0.8rem;
+            animation: fadeIn 1s ease-in-out 1.2s both;
+            letter-spacing: 1px;
+        }
+
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .invitation-container {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .main-image img {
+                max-width: 300px;
+            }
+
+            .wedding-info {
+                padding: 30px;
+            }
+
+            .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-container">
+        <!-- 标题 -->
+        <div class="header">
+            <h1>我们结婚了</h1>
+            <div class="decorative-line"></div>
+            <p>诚邀您参加我们的婚礼</p>
+        </div>
+
+        <!-- 主图片 -->
+        <div class="main-image">
+            <img src="liqiang.png" alt="婚礼照片">
+        </div>
+
+        <!-- 婚礼信息 -->
+        <div class="wedding-info">
+            <div class="info-item">
+                <strong>新郎 & 新娘</strong>：李强 & 新娘
+            </div>
+            <div class="decorative-line"></div>
+            <div class="info-item">
+                <strong>婚礼时间</strong>：2024年XX月XX日 12:00
+            </div>
+            <div class="decorative-line"></div>
+            <div class="info-item">
+                <strong>婚礼地点</strong>：筠连县秦味轩山庄
+            </div>
+            <div class="decorative-line"></div>
+            <div class="info-item">
+                <strong>联系电话</strong>：XXXXXXXXXXX
+            </div>
+        </div>
+
+        <!-- 按钮 -->
+        <div class="buttons">
+            <a href="https://uri.amap.com/marker?position=104.53642,28.17569&name=筠连县秦味轩山庄" target="_blank" class="btn">
+                查看地图
+            </a>
+            <a href="javascript:void(0)" class="btn btn-secondary" onclick="toggleMusic()">
+                音乐控制
+            </a>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>期待您的到来，与我们共同见证幸福时刻</p>
+        </div>
+    </div>
+
+    <!-- 音乐元素 -->
+    <audio id="weddingMusic" loop>
+        <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio>
+
+    <script>
+        // 音乐控制
+        const audio = document.getElementById('weddingMusic');
+        let isPlaying = false;
+
+        // 自动播放音乐
+        function autoPlayMusic() {
+            if (audio.paused) {
+                audio.play().catch(err => {
+                    console.log('音乐播放需要用户交互:', err);
+                });
+                isPlaying = true;
+            }
+        }
+
+        // 切换音乐播放状态
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+            } else {
+                audio.play();
+                isPlaying = true;
+            }
+        }
+
+        // 页面加载完成后尝试自动播放
+        window.onload = function() {
+            // 创建点击事件监听器，首次点击时播放音乐
+            document.addEventListener('click', autoPlayMusic, { once: true });
+            document.addEventListener('touchstart', autoPlayMusic, { once: true });
+        };
+    </script>
+</body>
+</html>
