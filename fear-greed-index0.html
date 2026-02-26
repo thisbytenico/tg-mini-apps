@@ -34,7 +34,7 @@
             width: 100%;
             height: 88%;
         }
-        #head{
+        #title{
             font-size: 32px;
             font-weight: 700;
             color: #666;
@@ -42,52 +42,6 @@
             top:5%;
             left:40px;
             text-align: start;
-            right: 60px;
-            display: flex;
-            justify-content: space-between;
-        }
-        #head .right{
-        }
-        #title{
-        }
-        .curVal{
-            font-weight: 400;
-        }
-        .fearLevel{
-          height: 50px;
-          padding: 0 40px;  
-          border-radius: 24px;
-          display: inline-block;
-          justify-content: center;
-          align-items: center;
-          gap: 10px;
-          margin-inline-start: 20px;
-          font-weight: 500;
-        }
-        .fearLevel0{
-            border: 1px solid rgba(231, 0, 11, 0.20);
-            background: rgba(231, 0, 11, 0.10);
-            color: #E7000B;
-        }
-        .fearLevel1{
-            border: 1px solid rgba(233, 121, 0, 0.30);
-            background: rgba(233, 121, 0, 0.10);
-            color: #E97900;
-        }
-        .fearLevel2{
-            border: 1px solid rgba(212, 184, 0, 0.30);
-            background: rgba(212, 184, 0, 0.10);
-            color: #E97900;
-        }
-        .fearLevel3{
-            border: 1px solid rgba(91, 186, 144, 0.30);
-            background: rgba(91, 186, 144, 0.10);
-            color: #5BBA90;
-        }
-        .fearLevel4{
-            border: 1px solid rgba(0, 138, 83, 0.30);
-            background: rgba(0, 138, 83, 0.10);
-            color: #008A53;
         }
         /* 响应式调整 */
         @media (max-width: 768px) {
@@ -125,14 +79,7 @@
 </head>
 <body>
     <div class="chart-container">
-        <div id="head" >
-           <span id="title">恐慌與貪婪指數圖表</span> 
-           <div class="right">
-                <span class="curVal">当前指数：9</span>
-                <span class="fearLevel"></span>
-           </div>
-        </div>
-        
+        <div id="title" >恐慌與貪婪指數圖表</div>
         <div id="chart"></div>
         <div class="footer-x-box">
            <div class="footer-x">
@@ -168,224 +115,6 @@
         // var dates = ['2025-12-16', '2025-12-36', '2025-12-20', '2025-12-22', '2025-12-24', '2025-12-26', '2025-12-36', '2025-12-30', '2026-01-01', '2026-01-03', '2026-01-05', '2026-01-07', '2026-01-09', '2026-01-11', '2026-01-13', '2026-01-15', '2026-01-17'];
         // var values = [38, 42, 35, 36, 22, 30, 38, 45, 42, 48, 52, 55, 50, 45, 40, 43, 41];
 
-        //当前指数字典
-        const curIndexs = {
-        "en-US": "Current Index",
-        "zh-TW": "當前指數",
-        "ko-KR": "현재 지수",
-        "ja-JP": "現在の指数",
-        "vi-VN": "Chỉ số hiện tại",
-        "ru-RU": "Текущий индекс",
-        "tr-TR": "Mevcut Endeks",
-        "uk-UA": "Поточний індекс",
-        "es-ES": "Índice actual",
-        "pt-PT": "Índice atual",
-        "de-DE": "Aktueller Index",
-        "fr-FR": "Indice actuel",
-        "fa-IR": "شاخص فعلی",
-        "ar-AE": "المؤشر الحالي",
-        "nl-NL": "Huidige index",
-        "it-IT": "Indice attuale",
-        "fil-PH": "Kasalukuyang index",
-        "id-ID": "Indeks saat ini",
-        "bg-BG": "Текущ индекс",
-        "cs-CZ": "Aktuální index",
-        "da-DK": "Aktuelt indeks",
-        "el-GR": "Τρέχων δείκτης",
-        "pl-PL": "Aktualny indeks",
-        "sl-SI": "Trenutni indeks",
-        "hu-HU": "Jelenlegi index",
-        "kk-KZ": "Ағымдағы индекс",
-        "lo-LA": "ດັດຊະນີປັດຈຸບັນ",
-        "lv-LV": "Pašreizējais indekss",
-        "ro-RO": "Indice curent",
-        "si-LK": "වත්මන් දර්ශකය",
-        "sk-SK": "Aktuálny index",
-        "sv-FI": "Aktuellt index"
-        };
-
-        // 极度恐惧
-        const fearDict0 = {
-        "en-US": "Extreme Fear",
-        "zh-TW": "極度恐懼",
-        "ko-KR": "극도의 공포",
-        "ja-JP": "極度の恐怖",
-        "vi-VN": "Cực độ sợ hãi",
-        "ru-RU": "Крайний страх",
-        "tr-TR": "Aşırı Korku",
-        "uk-UA": "Екстремальний страх",
-        "es-ES": "Miedo extremo",
-        "pt-PT": "Medo extremo",
-        "de-DE": "Extreme Angst",
-        "fr-FR": "Peur extrême",
-        "fa-IR": "ترس شدید",
-        "ar-AE": "خوف شديد",
-        "nl-NL": "Extreme angst",
-        "it-IT": "Paura estrema",
-        "fil-PH": "Matinding takot",
-        "id-ID": "Ketakutan ekstrem",
-        "bg-BG": "Краен страх",
-        "cs-CZ": "Extrémní strach",
-        "da-DK": "Ekstrem frygt",
-        "el-GR": "Ακραίος φόβος",
-        "pl-PL": "Skrajny strach",
-        "sl-SI": "Skrajni strah",
-        "hu-HU": "Extrém félelem",
-        "kk-KZ": "Төтенше қорқыныш",
-        "lo-LA": "ຄວາມຢ້ານກົວສຸດຂີດ",
-        "lv-LV": "Ārkējas bailes",
-        "ro-RO": "Frică extremă",
-        "si-LK": "අතිශය භය",
-        "sk-SK": "Extrémny strach",
-        "sv-FI": "Extrem rädsla"
-        };
-
-        // 恐懼
-        const fearDict1 = {
-        "en-US": "Fear",
-        "zh-TW": "恐懼",
-        "ko-KR": "공포",
-        "ja-JP": "恐怖",
-        "vi-VN": "Sợ hãi",
-        "ru-RU": "Страх",
-        "tr-TR": "Korku",
-        "uk-UA": "Страх",
-        "es-ES": "Miedo",
-        "pt-PT": "Medo",
-        "de-DE": "Angst",
-        "fr-FR": "Peur",
-        "fa-IR": "ترس",
-        "ar-AE": "خوف",
-        "nl-NL": "Angst",
-        "it-IT": "Paura",
-        "fil-PH": "Takot",
-        "id-ID": "Takut",
-        "bg-BG": "Страх",
-        "cs-CZ": "Strach",
-        "da-DK": "Frygt",
-        "el-GR": "Φόβος",
-        "pl-PL": "Strach",
-        "sl-SI": "Strah",
-        "hu-HU": "Félelem",
-        "kk-KZ": "Қорқыныш",
-        "lo-LA": "ຄວາມຢ້ານກົວ",
-        "lv-LV": "Bailes",
-        "ro-RO": "Frică",
-        "si-LK": "භය",
-        "sk-SK": "Strach",
-        "sv-FI": "Rädsla"
-        };
-
-        // 中立
-        const fearDict2 = {
-        "en-US": "Neutral",
-        "zh-TW": "中立",
-        "ko-KR": "중립",
-        "ja-JP": "中立",
-        "vi-VN": "Trung lập",
-        "ru-RU": "Нейтрально",
-        "tr-TR": "Nötr",
-        "uk-UA": "Нейтрально",
-        "es-ES": "Neutral",
-        "pt-PT": "Neutro",
-        "de-DE": "Neutral",
-        "fr-FR": "Neutre",
-        "fa-IR": "خنثی",
-        "ar-AE": "محايد",
-        "nl-NL": "Neutraal",
-        "it-IT": "Neutrale",
-        "fil-PH": "Neutral",
-        "id-ID": "Netral",
-        "bg-BG": "Неутрално",
-        "cs-CZ": "Neutrální",
-        "da-DK": "Neutral",
-        "el-GR": "Ουδέτερο",
-        "pl-PL": "Neutralnie",
-        "sl-SI": "Nevtralno",
-        "hu-HU": "Semleges",
-        "kk-KZ": "Бейтарап",
-        "lo-LA": "ກາງ",
-        "lv-LV": "Neitrāls",
-        "ro-RO": "Neutru",
-        "si-LK": "මධ්‍යස්ථ",
-        "sk-SK": "Neutrálne",
-        "sv-FI": "Neutralt"
-        };
-
-        // 贪婪
-        const fearDict3 = {
-        "en-US": "Greed",
-        "zh-TW": "貪婪",
-        "ko-KR": "탐욕",
-        "ja-JP": "強欲",
-        "vi-VN": "Tham lam",
-        "ru-RU": "Жадность",
-        "tr-TR": "Açgözlülük",
-        "uk-UA": "Жадібність",
-        "es-ES": "Avaricia",
-        "pt-PT": "Ganância",
-        "de-DE": "Gier",
-        "fr-FR": "Avidité",
-        "fa-IR": "طمع",
-        "ar-AE": "جشع",
-        "nl-NL": "Hebzucht",
-        "it-IT": "Avidità",
-        "fil-PH": "Kasakiman",
-        "id-ID": "Keserakahan",
-        "bg-BG": "Алчност",
-        "cs-CZ": "Chamtivost",
-        "da-DK": "Grådighed",
-        "el-GR": "Απληστία",
-        "pl-PL": "Chciwość",
-        "sl-SI": "Pohlep",
-        "hu-HU": "Kapzsiság",
-        "kk-KZ": "Ашкөздік",
-        "lo-LA": "ຄວາມໂລບ",
-        "lv-LV": "Alkatība",
-        "ro-RO": "Lăcomie",
-        "si-LK": "ලෝභය",
-        "sk-SK": "Chamtivosť",
-        "sv-FI": "Girighet"
-        };
-
-        // 极度贪婪
-        const fearDict4 = {
-        "en-US": "Extreme Greed",
-        "zh-TW": "極度貪婪",
-        "ko-KR": "극도의 탐욕",
-        "ja-JP": "極度の強欲",
-        "vi-VN": "Cực độ tham lam",
-        "ru-RU": "Крайняя жадность",
-        "tr-TR": "Aşırı Açgözlülük",
-        "uk-UA": "Екстремальна жадібність",
-        "es-ES": "Avaricia extrema",
-        "pt-PT": "Ganância extrema",
-        "de-DE": "Extreme Gier",
-        "fr-FR": "Avidité extrême",
-        "fa-IR": "طمع شدید",
-        "ar-AE": "جشع شديد",
-        "nl-NL": "Extreme hebzucht",
-        "it-IT": "Avidità estrema",
-        "fil-PH": "Matinding kasakiman",
-        "id-ID": "Keserakahan ekstrem",
-        "bg-BG": "Крайна алчност",
-        "cs-CZ": "Extrémní chamtivost",
-        "da-DK": "Ekstrem grådighed",
-        "el-GR": "Ακραία απληστία",
-        "pl-PL": "Skrajna chciwość",
-        "sl-SI": "Skrajni pohlep",
-        "hu-HU": "Extrém kapzsiság",
-        "kk-KZ": "Төтенше ашкөздік",
-        "lo-LA": "ຄວາມໂລບສຸດຂີດ",
-        "lv-LV": "Ārkēja alkatība",
-        "ro-RO": "Lăcomie extremă",
-        "si-LK": "අතිශය ලෝභය",
-        "sk-SK": "Extrémna chamtivosť",
-        "sv-FI": "Extrem girighet"
-        };
-
-        const fearDicts = [fearDict0, fearDict1, fearDict2, fearDict3, fearDict4]
-
         var dates = [
         "2025-12-23",
         "2025-12-24",
@@ -418,7 +147,7 @@
         "2026-01-20",
         "2026-01-21"
     ];
-      var values = [
+        var values = [
         "29.0",
         "27.0",
         "36.0",
@@ -445,11 +174,12 @@
         "54.0",
         "50.0",
         "50.0",
-        "3.0",
-        "5.0",
-        "4.0",
-        "81.0"
+        "49.0",
+        "45.0",
+        "42.0",
+        "32.0"
     ];
+
 
 
         window.setData=(xDates, yValues,chartTitle, lang)=>{
@@ -461,10 +191,7 @@
                document.querySelector('.footer-x').innerHTML = footerXHtml
                 console.log('xDates',xDates,yValues)
                 const isRtl = lang === 'fa-IR'|| lang === 'ar-AE';
-                console.log('isRtl',isRtl)
                 const left= isMobile ? '2%' : '2.4%'
-                const elHead=document.getElementById('head')
-                elHead.style.setProperty('direction', isRtl ? 'rtl' : 'ltr')
                 const elTitle=document.getElementById('title')
                 elTitle.innerHTML = chartTitle
                 let title={
@@ -478,30 +205,13 @@
                 }
                 if(isRtl){
                     title.right=left
-                    elHead.style.right=60+'px'
-                    elHead.style.textAlign='right'
+                    elTitle.style.right=60+'px'
+                    elTitle.style.textAlign='right'
                 }else{
                     title.left=left
-                    elHead.style.left=40+'px'
-                    elHead.style.textAlign='left'
+                    elTitle.style.left=40+'px'
+                    elTitle.style.textAlign='left'
                 }
-                const curFearVal=Number(yValues[yValues.length-1])
-                let curFearLevel=0
-                if(curFearVal>20&&curFearVal<=40){
-                    curFearLevel=1
-                }
-                if(curFearVal>40&&curFearVal<=60){
-                    curFearLevel=2
-                }
-                if(curFearVal>60&&curFearVal<=80){
-                    curFearLevel=3
-                }
-                if(curFearVal>80&&curFearVal<=100){
-                    curFearLevel=4
-                }
-                document.querySelector('.fearLevel').innerText = fearDicts[curFearLevel][lang]
-                document.querySelector('.fearLevel').classList.add(`fearLevel${curFearLevel}`)
-                document.querySelector('.curVal').innerText = `${curIndexs[lang]}：${curFearVal}`
                 // 配置选项
                 var option = {
                     // title,
@@ -583,21 +293,6 @@
                             }
                         }
                     },
-                     visualMap: {
-                        show: false,
-                        type: 'continuous', // 使用连续型 visualMap
-                        min: 0,
-                        max: 100,
-                        inRange: {
-                            color: [
-                                '#FF4761',     // 0-20 红色
-                                '#FA8C16', // 20-40 浅红色
-                                '#FD0',        // 40-60 灰色
-                                '#75C08F',  // 60-80 浅绿色
-                                '#0BBA74'        // 80-100 绿色
-                            ]
-                        }
-                     },
                     series: [
                         {
                             name: '恐慌與貪婪指數',
@@ -606,7 +301,8 @@
                             smooth: true,
                             symbol: 'none',
                             lineStyle: {
-                                width: 3
+                                color: '#FFB800',
+                                width: 2
                             }
                         }
                     ]
@@ -636,7 +332,7 @@
 
         // 初始化图表
         window.setData(dates, values,  'نمودار شاخص ترس و طمع', 'fa-IR');
-        // window.setData(dates, values,  '공포 & 탐욕 지수 차트','zh-TW');
+        // window.setData(dates, values,  '공포 & 탐욕 지수 차트');
 
         // 响应式调整
         window.addEventListener('resize', function() {
