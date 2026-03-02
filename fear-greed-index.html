@@ -35,20 +35,21 @@
             height: 88%;
         }
         #head{
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 700;
             color: #666;
             position: absolute;
             top:5%;
             left:40px;
             text-align: start;
-            right: 60px;
+            right: 50px;
             display: flex;
             justify-content: space-between;
         }
         #head .right{
         }
         #title{
+            max-width: 560px;
         }
         .curVal{
             font-weight: 400;
@@ -111,7 +112,7 @@
         .footer-x-item{
             display: inline-block;
             text-align: center;
-            font-size: 36px;
+            font-size: 32px;
             color: #A2A9B6;
         }
          .footer-x-item:first-child{
@@ -502,6 +503,7 @@
                 document.querySelector('.fearLevel').innerText = fearDicts[curFearLevel][lang]
                 document.querySelector('.fearLevel').classList.add(`fearLevel${curFearLevel}`)
                 document.querySelector('.curVal').innerText = `${curIndexs[lang]}：${curFearVal}`
+                console.log('chartTitle.length',chartTitle.length)
                 // 配置选项
                 var option = {
                     // title,
@@ -519,7 +521,7 @@
                         left: '3%',
                         right: '4%',
                         bottom: '1%', // 增加底部空间，避免x轴标签重叠
-                        top: isMobile ? '20%' : '22%', // 调整顶部空间，为居中标题留出足够位置
+                        top: isMobile ? '20%' : chartTitle.length>36?'26%':'22%', // 调整顶部空间，为居中标题留出足够位置
                         containLabel: true
                     },
                     xAxis: {
@@ -637,7 +639,9 @@
         // 初始化图表
         //window.setData(dates, values,  'نمودار شاخص ترس و طمع', 'fa-IR');
         // window.setData(dates, values,  '공포 & 탐욕 지수 차트','zh-TW');
+        // window.setData(dates, values,  '恐惧与贪婪指数图表','zh-TW');
 
+        //window.setData(dates, values,  'Graphigue de l’ indice de peur et de cupidité','fr-FR');
         // 响应式调整
         window.addEventListener('resize', function() {
             myChart.resize();
