@@ -524,7 +524,7 @@
                         left: '3%',
                         right: '4%',
                         bottom: '1%', // 增加底部空间，避免x轴标签重叠
-                        top: isMobile ? '20%' : (chartTitle.length>36&&(curFearLevel==0||curFearLevel==4))?'26%':'22%', // 调整顶部空间，为居中标题留出足够位置
+                        top: isMobile ? '20%' : isOverflow?'26%':'22%', // 调整顶部空间，为居中标题留出足够位置
                         containLabel: true
                     },
                     xAxis: {
