@@ -448,7 +448,7 @@
         "3.0",
         "5.0",
         "4.0",
-        "15.0"
+        "45.0"
     ];
 
 
@@ -503,7 +503,7 @@
                 document.querySelector('.fearLevel').classList.add(`fearLevel${curFearLevel}`)
                 document.querySelector('.curVal').innerText = `${curIndexs[lang]}：${curFearVal}`
                 console.log('chartTitle.length',chartTitle.length)
-                const isOverflow=chartTitle.length>36&&(curFearLevel==0||curFearLevel==4)
+                const isOverflow=chartTitle.length>36&&(curFearLevel==0||curFearLevel==4)||lang==='kk-KZ'
                 if(isOverflow){
                     elTitle.style.maxWidth=lang==='kk-KZ'?'480px':'558px'
                 }
@@ -645,8 +645,8 @@
         // window.setData(dates, values,  '恐惧与贪婪指数图表','zh-TW');
 
         // window.setData(dates, values,  'Graphigue de l’ indice de peur et de cupidité','fr-FR');
-        //window.setData(dates, values,  'Grafik indeks Ketakutan & Keserakahan','id-ID');
-        //  window.setData(dates, values,  'коркыныш пен Aшкездiк индексi диаграммасы','kk-KZ');
+        // window.setData(dates, values,  'Grafik indeks Ketakutan & Keserakahan','id-ID');
+         //window.setData(dates, values,  'коркыныш пен Aшкездiк индексi диаграммасы','kk-KZ');
 
         
         // 响应式调整
