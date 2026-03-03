@@ -448,7 +448,7 @@
         "3.0",
         "5.0",
         "4.0",
-        "45.0"
+        "41.0"
     ];
 
 
@@ -503,9 +503,18 @@
                 document.querySelector('.fearLevel').classList.add(`fearLevel${curFearLevel}`)
                 document.querySelector('.curVal').innerText = `${curIndexs[lang]}：${curFearVal}`
                 console.log('chartTitle.length',chartTitle.length)
-                const isOverflow=chartTitle.length>36&&(curFearLevel==0||curFearLevel==4)||lang==='kk-KZ'
+                let isOverflow=chartTitle.length>35&&(curFearLevel==0||curFearLevel==4)||lang==='kk-KZ'||((curFearLevel===0||curFearLevel===4)&&(lang==='uk-UA'||lang==='el-GR'||lang==='ru-RU'))
+                // if(lang==='bg-BG'&&curFearLevel===0){
+                //     isOverflow=false
+                // }
                 if(isOverflow){
-                    elTitle.style.maxWidth=lang==='kk-KZ'?'480px':'558px'
+                    if(lang==='ru-RU'){
+                        elTitle.style.maxWidth='508px'
+                    }else if(lang==='uk-UA'){
+                        elTitle.style.maxWidth='400px'
+                    }else{
+                        elTitle.style.maxWidth=lang==='kk-KZ'?'480px':((curFearLevel==0||curFearLevel==4)?'518px':'558px')
+                    }
                 }
                 // 配置选项
                 var option = {
@@ -645,10 +654,14 @@
         // window.setData(dates, values,  '恐惧与贪婪指数图表','zh-TW');
 
         // window.setData(dates, values,  'Graphigue de l’ indice de peur et de cupidité','fr-FR');
-        // window.setData(dates, values,  'Grafik indeks Ketakutan & Keserakahan','id-ID');
-         //window.setData(dates, values,  'коркыныш пен Aшкездiк индексi диаграммасы','kk-KZ');
+        //  window.setData(dates, values,  'Grafik indeks Ketakutan & Keserakahan','id-ID');
+        //  window.setData(dates, values,  'коркыныш пен Aшкездiк индексi диаграммасы','kk-KZ');
+        //  window.setData(dates, values,  'Bailu un Alkatibas indeksa diagramma','lv-LV');
+            // window.setData(dates, values,  'Графiк iндексу страху таЖадiбностi','uk-UA');
+        //  window.setData(dates, values,  'Δ¡уpαμμa Δεiктn фóβou &Aπ入notias','el-GR');
+        //   window.setData(dates, values,  'График индекса страха иЖадHОCTИ','ru-RU');
 
-        
+          Δ
         // 响应式调整
         window.addEventListener('resize', function() {
             myChart.resize();
